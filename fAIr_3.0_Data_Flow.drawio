@@ -1,0 +1,311 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0" version="26.2.9">
+  <diagram name="fAIr 3.0 Data Flow" id="fair-3-0-data-flow">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="fAIr 3.0 - Data Flow Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1920" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- User Layer -->
+        <mxCell id="user-layer" value="User Interface Layer" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1920" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="user-frontend" value="fAIr Frontend (React/TypeScript)&#xa;- Map visualization with MapLibre GL&#xa;- Model creation &amp; management UI&#xa;- Training job monitoring&#xa;- Prediction visualization" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="user-layer">
+          <mxGeometry y="40" width="1920" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Application Layer -->
+        <mxCell id="app-layer" value="Application Layer" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="1920" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="app-backend" value="fAIr Backend API (Django REST Framework)&#xa;- Dataset, Model, Training, AOI, Label management&#xa;- OSM authentication integration&#xa;- Coordinates training requests to Flyte&#xa;- Manages metadata in PostgreSQL" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="app-layer">
+          <mxGeometry y="40" width="1920" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ML Workflow Orchestration Layer -->
+        <mxCell id="ml-orchestration-layer" value="ML Workflow Orchestration" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="1920" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="flyte" value="Flyte (Workflow Orchestrator)&#xa;- Task scheduling (CPU/GPU)&#xa;- Workflow versioning &amp; caching&#xa;- Retry mechanisms&#xa;- Data passing between steps&#xa;- ONNX model generation plugins (TensorFlow, PyTorch, Scikit-Learn)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="ml-orchestration-layer">
+          <mxGeometry y="40" width="1920" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mlflow" value="MLFlow (Experiment Tracking &amp; Model Registry)&#xa;- Experiment tracking (metrics, parameters, artifacts)&#xa;- Model registry with versioning (dev → staging → production)&#xa;- Model lineage tracking&#xa;- MLFlow integration with Flyte workflows" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="ml-orchestration-layer">
+          <mxGeometry y="100" width="1920" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Model Inference Layer -->
+        <mxCell id="inference-layer" value="Model Inference" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="560" width="1920" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kserve" value="KServe (Online API Inference)&#xa;- Model serving in Kubernetes cluster&#xa;- REST API for model inference&#xa;- Supports ONNX models&#xa;- Alternative: Seldon Core" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="inference-layer">
+          <mxGeometry y="40" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="onnx-browser" value="ONNX Runtime (Browser-based WASM Inference)&#xa;- Client-side inference in user's browser&#xa;- WASM/WebGPU/WebNN runtime support&#xa;- Runtime requirements documented in STAC metadata" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="inference-layer">
+          <mxGeometry y="90" width="1920" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- Data & Storage Layer -->
+        <mxCell id="storage-layer" value="Data &amp; Storage Layer" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="740" width="1920" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="postgres" value="PostgreSQL (CloudNativePG) - Metadata Database&#xa;- Dataset, Model, Training, AOI, Label, Feedback records&#xa;- PostGIS extension for geospatial data&#xa;- Deployed in Kubernetes cluster via CloudNativePG operator" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="storage-layer">
+          <mxGeometry y="40" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="AWS S3 - Model Artifacts &amp; Training Data Storage&#xa;- Trained model artifacts (ONNX, checkpoints)&#xa;- Training data and preprocessed datasets&#xa;- Model weights and metadata" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="storage-layer">
+          <mxGeometry y="90" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="stac" value="STAC Extension - Model Discoverability&#xa;- STAC-MLM extension for model metadata&#xa;- Links to MLFlow runs (mlflow://runs/abc123)&#xa;- Runtime requirements (WASM, WebGPU, WebNN)&#xa;- Geospatial context, input/output specs, provenance&#xa;- Integrated with OpenAerialMap/eoAPI STAC catalog" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="storage-layer">
+          <mxGeometry y="140" width="1920" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Kubernetes Infrastructure Layer -->
+        <mxCell id="k8s-layer" value="Kubernetes Infrastructure (AWS EKS)" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="940" width="1920" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="karpenter" value="Karpenter - Node Autoscaling&#xa;- GPU-enabled node autoscaling&#xa;- Scale down to 0 when not in use&#xa;- Automatic node provisioning based on workload demands" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="k8s-layer">
+          <mxGeometry y="40" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="keda" value="KEDA - Flyte Workflow Autoscaling&#xa;- Scales Flyte components based on demand&#xa;- Increases/decreases instances of Flyte components dynamically" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="k8s-layer">
+          <mxGeometry y="90" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="prometheus" value="Prometheus - Metrics Collection&#xa;- Resource usage tracking&#xa;- Workflow execution metrics&#xa;- System performance monitoring" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="k8s-layer">
+          <mxGeometry y="140" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="grafana" value="Grafana - Observability Dashboard&#xa;- Visualizes Prometheus metrics&#xa;- Resource usage dashboards&#xa;- Workflow performance visualization" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="k8s-layer">
+          <mxGeometry y="190" width="1920" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Observability Layer -->
+        <mxCell id="observability-layer" value="Observability &amp; Tracing" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1200" width="1920" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="otel" value="OpenTelemetry - Distributed Tracing&#xa;- End-to-end trace: fAIr Frontend → Backend API → PostgreSQL queries → Flyte workflows → ML training traces&#xa;- Python ML workflow instrumentation&#xa;- Standard library logging integration&#xa;- Configured via Flyte Helm chart configmap" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="observability-layer">
+          <mxGeometry y="40" width="1920" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- External Services -->
+        <mxCell id="external-layer" value="External Services" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1320" width="1920" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="osm" value="OpenStreetMap (OSM)&#xa;- Label data source (building footprints, features)&#xa;- OAuth 2.0 authentication&#xa;- Raw Data API for fetching geospatial features" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="external-layer">
+          <mxGeometry y="40" width="1920" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oam" value="OpenAerialMap / eoAPI&#xa;- Imagery source for training and inference&#xa;- STAC catalog for imagery discovery&#xa;- STAC-MLM models integrated into catalog" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="external-layer">
+          <mxGeometry y="80" width="1920" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Connections - Vertical Flow (straight down, no routing needed) -->
+        <mxCell id="conn-frontend-backend" value="API Requests" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0066CC;" edge="1" parent="1" source="user-frontend" target="app-backend">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="300" as="sourcePoint" />
+            <mxPoint x="1050" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-backend-flyte" value="Training Requests" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0066CC;" edge="1" parent="1" source="app-backend" target="flyte">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="400" as="sourcePoint" />
+            <mxPoint x="1050" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-flyte-mlflow" value="Experiment Tracking" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0066CC;" edge="1" parent="1" source="flyte" target="mlflow">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="460" as="sourcePoint" />
+            <mxPoint x="1050" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-flyte-kserve" value="Trained Models (ONNX)" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0066CC;" edge="1" parent="1" source="mlflow" target="kserve">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="540" as="sourcePoint" />
+            <mxPoint x="1050" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-backend-postgres" value="Metadata CRUD" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0066CC;" edge="1" parent="1" source="app-backend" target="postgres">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="340" as="sourcePoint" />
+            <mxPoint x="1050" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-flyte-s3" value="Model Artifacts" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0066CC;" edge="1" parent="1" source="flyte" target="s3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="540" as="sourcePoint" />
+            <mxPoint x="1050" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-stac-oam" value="STAC Catalog" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0066CC;" edge="1" parent="1" source="stac" target="oam">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="920" as="sourcePoint" />
+            <mxPoint x="1050" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Cross-cutting connections (routed around outside, thicker and different color) -->
+        <mxCell id="conn-mlflow-stac" value="Model Metadata" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;strokeColor=#FF6600;labelBackgroundColor=#FFFFFF;fontColor=#FF6600;fontStyle=1;" edge="1" parent="1" source="mlflow" target="stac">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2000" y="510" />
+              <mxPoint x="2000" y="820" />
+            </Array>
+            <mxPoint x="2000" y="500" as="sourcePoint" />
+            <mxPoint x="2050" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-backend-kserve" value="Inference Requests" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;strokeColor=#FF6600;labelBackgroundColor=#FFFFFF;fontColor=#FF6600;fontStyle=1;" edge="1" parent="1" source="app-backend" target="kserve">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2000" y="280" />
+              <mxPoint x="2000" y="620" />
+            </Array>
+            <mxPoint x="2000" y="280" as="sourcePoint" />
+            <mxPoint x="2050" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-frontend-onnx" value="Client-side Inference" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;strokeColor=#FF6600;labelBackgroundColor=#FFFFFF;fontColor=#FF6600;fontStyle=1;" edge="1" parent="1" source="user-frontend" target="onnx-browser">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2000" y="140" />
+            </Array>
+            <mxPoint x="2000" y="140" as="sourcePoint" />
+            <mxPoint x="2050" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-backend-s3" value="Artifact Access" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;strokeColor=#FF6600;labelBackgroundColor=#FFFFFF;fontColor=#FF6600;fontStyle=1;" edge="1" parent="1" source="app-backend" target="s3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2000" y="310" />
+              <mxPoint x="2000" y="785" />
+            </Array>
+            <mxPoint x="2000" y="310" as="sourcePoint" />
+            <mxPoint x="2050" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-backend-osm" value="Label Data &amp; Auth" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;strokeColor=#FF6600;labelBackgroundColor=#FFFFFF;fontColor=#FF6600;fontStyle=1;" edge="1" parent="1" source="app-backend" target="osm">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="280" />
+              <mxPoint x="40" y="1340" />
+            </Array>
+            <mxPoint x="1000" y="340" as="sourcePoint" />
+            <mxPoint x="1050" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-frontend-oam" value="Imagery" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;strokeColor=#FF6600;labelBackgroundColor=#FFFFFF;fontColor=#FF6600;fontStyle=1;" edge="1" parent="1" source="user-frontend" target="oam">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2000" y="170" />
+              <mxPoint x="2000" y="1360" />
+            </Array>
+            <mxPoint x="2000" y="170" as="sourcePoint" />
+            <mxPoint x="2050" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- K8s Infrastructure connections (dashed) -->
+        <mxCell id="conn-flyte-k8s" value="Hosted On" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="flyte" target="k8s-layer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="540" as="sourcePoint" />
+            <mxPoint x="1050" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-kserve-k8s" value="Hosted On" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="kserve" target="k8s-layer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="720" as="sourcePoint" />
+            <mxPoint x="1050" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-postgres-k8s" value="Hosted On" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="postgres" target="k8s-layer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="920" as="sourcePoint" />
+            <mxPoint x="1050" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-mlflow-k8s" value="Hosted On" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="mlflow" target="k8s-layer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="540" as="sourcePoint" />
+            <mxPoint x="1050" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Observability connections -->
+        <mxCell id="conn-backend-otel" value="Traces" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="app-backend" target="otel">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="340" as="sourcePoint" />
+            <mxPoint x="1050" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-flyte-otel" value="Traces" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="flyte" target="otel">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="540" as="sourcePoint" />
+            <mxPoint x="1050" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-k8s-prometheus" value="Metrics" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="k8s-layer" target="prometheus">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="940" as="sourcePoint" />
+            <mxPoint x="1050" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn-prometheus-grafana" value="Visualization" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="prometheus" target="grafana">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="1180" as="sourcePoint" />
+            <mxPoint x="1050" y="1130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Karpenter manages nodes -->
+        <mxCell id="conn-karpenter-k8s" value="Manages" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="karpenter" target="k8s-layer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="980" as="sourcePoint" />
+            <mxPoint x="1050" y="930" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- KEDA manages Flyte -->
+        <mxCell id="conn-keda-flyte" value="Autoscales" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="1" source="keda" target="flyte">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="1030" as="sourcePoint" />
+            <mxPoint x="1050" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend-box" value="Legend" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;arcSize=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1460" width="1920" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-blue" value="━━ Blue Arrow: Direct Data/Request Flow (vertical/horizontal, no routing)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0;fontColor=#0066CC;" vertex="1" parent="legend-box">
+          <mxGeometry y="30" width="1920" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-orange" value="━━ Orange Arrow (Thick): Cross-cutting Data Flow (routed around components)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0;fontColor=#FF6600;" vertex="1" parent="legend-box">
+          <mxGeometry y="60" width="1920" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-dashed" value="┅┅ Dashed Arrow: Infrastructure/Hosting Relationship (deployment, management, observability)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="legend-box">
+          <mxGeometry y="90" width="1920" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-note" value="Note: This architecture replaces Celery with Flyte for workflow orchestration, adds MLFlow for experiment tracking, and introduces Kubernetes-based infrastructure with comprehensive observability." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=2;fontColor=#666666;" vertex="1" parent="legend-box">
+          <mxGeometry y="120" width="1920" height="30" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
