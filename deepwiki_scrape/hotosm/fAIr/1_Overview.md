@@ -108,7 +108,7 @@ The fAIr system consists of these primary components:
 1. **Frontend**: React-based web application that provides the user interface for creating datasets, training models, and viewing predictions
 2. **Backend API**: Django REST API that handles data management, authentication, and coordinates the training process
 3. **Prediction API**: Specialized API for generating real-time predictions using trained models
-4. **Workers**: Celery workers that handle asynchronous model training tasks
+4. **Workers**: Celery workers that handle asynchronous model training & offline prediction ( inference ) tasks
 5. **Database**: PostgreSQL with PostGIS extension for spatial data storage
 6. **Storage**: S3-compatible storage for model artifacts and training data
 
