@@ -94,6 +94,9 @@ E.g. as part of STAC metadata
 
 ### How DO Flyte & ML Flow Compare?
 
+Flyte and MLflow don't compete with each other rather compliment one another . We would need to setup a standard way for model developers to submit the model to fAIr and An Mlflow project with STAC metada seems excellent baseline.
+
+
 MLflow
 - Experiment tracking
 - Metrics, parameters, artifacts
