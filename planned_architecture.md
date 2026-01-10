@@ -112,6 +112,7 @@ Flyte
   the final output to users (via KServe?).
 - Else we can use onnxruntime in the browser (WASM) to do the
   inference entirely in the users browser.
+- Or we use both, one of the key feature of fAIr is to be able push its generated predictions for validation via already integrated tool like Mapswipe and JOSM , meanwhile inbrowser prediction remains useful to test and visulize the predictions in the browser directly 
 
 **Batch inference**: Flyte
 **Online API inference**: KServe via fAIr backend
