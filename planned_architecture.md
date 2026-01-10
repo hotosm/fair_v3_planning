@@ -94,6 +94,9 @@ E.g. as part of STAC metadata
 
 ### How DO Flyte & ML Flow Compare?
 
+Flyte and MLflow don't compete with each other rather compliment one another . We would need to setup a standard way for model developers to submit the model to fAIr and An Mlflow project with STAC metada seems excellent baseline.
+
+
 MLflow
 - Experiment tracking
 - Metrics, parameters, artifacts
@@ -112,6 +115,7 @@ Flyte
   the final output to users (via KServe?).
 - Else we can use onnxruntime in the browser (WASM) to do the
   inference entirely in the users browser.
+- Or we use both, one of the key feature of fAIr is to be able push its generated predictions for validation via already integrated tool like Mapswipe and JOSM , meanwhile inbrowser prediction remains useful to test and visulize the predictions in the browser directly 
 
 **Batch inference**: Flyte
 **Online API inference**: KServe via fAIr backend
