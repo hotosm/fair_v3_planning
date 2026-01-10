@@ -185,8 +185,8 @@ The fAIr system uses the following key technologies:
 |-----------|--------------|
 | Frontend | React, TypeScript, Vite, MapLibre GL |
 | Backend | Django, Django REST Framework, GeoDjango |
-| Machine Learning | TensorFlow, RAMP, YOLOv8 |
-| Data Storage | PostgreSQL, PostGIS, S3 |
+| Machine Learning | TensorFlow, PyTorch , RAMP, YOLOv8 |
+| Data Storage | PostgreSQL, PostGIS, S3, EFS|
 | Task Processing | Celery, Redis |
 | Deployment | Docker, GitHub Actions |
 
