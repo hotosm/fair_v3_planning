@@ -145,3 +145,46 @@ Flyte
   from the fAIr frontend --> fAIr API call --> postgres
   queries --> Flyte workflow details --> ML workflow traces
   and back.
+
+### (Optional) Pricing Strategies
+
+- fAIr is envisioned as an open platform for all, and in
+  most cases should be free to use.
+- Model training on GPU's comes at a cost, however.
+- For large users (e.g. other NGOs, governments, etc), we could
+  consider providing a cost model for usage of fAIr. (this
+  may not happen, but it's good to be prepared for it).
+- We can likely keep batch inference (Flyte) and online inference
+  (KServe) free for users. The majority of cost is in the
+  Flyte (GPU) model training. There are also S3 and egress costs
+  to consider, that we will probably just absorb into the platform.
+- There are three potential strategies listed below (both are
+  approximate - if we need detailed billing, we need a different
+  strategy):
+
+#### A. Prometheus Metrics Scraping
+
+- We can track GPU usage, pod runtime duration, gathering stats
+  like `container_gpu_usage_seconds_total`.
+- In order to sum these up per user, we should add labels into
+  the workflow containers, such as `fair.user_id`, `fair.project_id`.
+- Flyte will propagate the labels into pods and jobs.
+- We do some back calculation per-month of Prometheus metrics,
+  add a multiplier, then send a bill to the organisation / user.
+- Grafana would provide a dashboard for this.
+
+We could also do other variations of this, using a simple usage
+ledger in the database. If we determine the workflow run hours,
+then multiply by a set rate (based mostly on AWS GPU costing).
+
+#### B. Subscription Model
+
+- For organisations that rely on fAIr a lot, we could define
+  a subscription model to recoup some costs.
+- We set a certain fee per-month, with no cap, expecting that
+  the total usage between organisations should average out
+  (high-end and low-end users), giving approximate recovery
+  of costs for workflows.
+- The advantage to NGOs / orgs is that this is a predictable
+  monthly fee that could be added into proposals / projects.
+- This would probably need a 'fair usage' policy of some kind.
