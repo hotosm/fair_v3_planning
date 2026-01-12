@@ -158,7 +158,7 @@ Flyte
   (KServe) free for users. The majority of cost is in the
   Flyte (GPU) model training. There are also S3 and egress costs
   to consider, that we will probably just absorb into the platform.
-- There are three potential strategies listed below (both are
+- There are two potential strategies listed below (both are
   approximate - if we need detailed billing, we need a different
   strategy):
 
